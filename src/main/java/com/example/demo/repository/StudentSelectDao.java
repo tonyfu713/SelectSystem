@@ -1,0 +1,27 @@
+package com.example.demo.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.StudentSelect;
+import com.example.demo.entity.SubjectSystem;
+
+@Repository
+public interface StudentSelectDao extends JpaRepository<StudentSelect,String>{
+
+	List<StudentSelect> findByStudentId(String studentId);
+
+	boolean existsByClassCode(String subjectSystem);
+
+	boolean existsByStudentId(String studentId);
+
+	boolean existsByStudentNameAndClassCode(String className, String classCode);
+
+	List<StudentSelect> findByClassCode(String classCode);
+
+	boolean existsByStartTimeGreaterThan(Integer endTime);
+
+
+}
