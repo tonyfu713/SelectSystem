@@ -39,14 +39,14 @@ public class StudentServiceIImpl implements StudentService{
 	//功能_添加學生
 	@Override
 	public StudentResponse addStudentList(StudentRequest studentRequest) {
-		List<Student> reqStudentlist = studentRequest.getStudentlist();
+		List<Student> reqStudentList = studentRequest.getStudentlist();
 		List<Student>errorStudentList = new ArrayList<>();
 
 		//可以輸入僅1筆資料，但必須用list格式
-		if(CollectionUtils.isEmpty(reqStudentlist)) {
+		if(CollectionUtils.isEmpty(reqStudentList)) {
 			return new StudentResponse("資料輸入不完全");
 		}
-		for(Student item : reqStudentlist) {
+		for(Student item : reqStudentList) {
 			if(!StringUtils.hasText(item.getStudentId())) {
 				return new StudentResponse("未輸入學號");
 			}
@@ -60,14 +60,14 @@ public class StudentServiceIImpl implements StudentService{
 		if(!errorStudentList.isEmpty()) {
 			return new StudentResponse("學號重複");			
 		}
-		studentDao.saveAll(reqStudentlist);
+		studentDao.saveAll(reqStudentList);
 		
-		return new StudentResponse(reqStudentlist,"成功");
+		return new StudentResponse(reqStudentList,"成功");
 	}
 	
 	//功能_刪除學生
 	@Override
-	public StudentResponse delletStudentList(StudentRequest studentRequest) {
+	public StudentResponse deleteStudentList(StudentRequest studentRequest) {
 		String reqStudent = studentRequest.getStudentId();
 		
 		//防呆_沒輸入東西

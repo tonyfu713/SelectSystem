@@ -13,15 +13,18 @@ public interface StudentSelectDao extends JpaRepository<StudentSelect,String>{
 
 	List<StudentSelect> findByStudentId(String studentId);
 
-	boolean existsByClassCode(String subjectSystem);
-
 	boolean existsByStudentId(String studentId);
 
 	boolean existsByStudentNameAndClassCode(String className, String classCode);
 
-	List<StudentSelect> findByClassCode(String classCode);
+	boolean existsByClassCode(String classCode);
 
 	boolean existsByStartTimeGreaterThan(Integer endTime);
+
+	List<StudentSelect> findByClassCode(String classCode);
+
+
+//	boolean existsByClassCode(String classCode);
 
 
 }

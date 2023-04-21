@@ -28,18 +28,23 @@ public class StutentSelectController {
 		return studentSelectService.addStudentSelectList(studentSelectRequest);
 	}
 	
-	@PostMapping("dellet_studend_select_list")
-	public StudentSelectResponse delletStudentSelectList(@RequestBody StudentSelectRequest studentSelectRequest) {
+	@PostMapping("delete_studend_select_list")
+	public StudentSelectResponse deleteStudentSelectList(@RequestBody StudentSelectRequest studentSelectRequest) {
 		
-		return studentSelectService.delletStudentSelectList(studentSelectRequest);
+		return studentSelectService.deleteStudentSelectList(studentSelectRequest);
 	}
 	
-	@PostMapping("find_by_student_id")
-	public List<StudentSelect> findByStudentId(@RequestBody StudentSelectRequest studentSelectRequest) {
+//	@PostMapping("find_by_student_id")
+//	public List<StudentSelect> findByStudentId(@RequestBody StudentSelectRequest studentSelectRequest) {
+//
+//		return studentSelectService.findByStudentId(studentSelectRequest.getStudentId());
+//	}
+	
+	@PostMapping("find_by_student_id2")
+	public StudentSelectResponse findByStudentId2(@RequestBody StudentSelectRequest studentSelectRequest) {
 
-		return studentSelectService.findByStudentId(studentSelectRequest.getStudentId());
+		return studentSelectService.findByStudentId2(studentSelectRequest);
 	}
-	
 
 
 

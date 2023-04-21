@@ -27,10 +27,10 @@ public class StudentController {
 
 		return studentService.addStudentList(studentRequest);
 	}
-	@PostMapping("dellet_student_list")
-	public StudentResponse delletStudentList(@RequestBody StudentRequest studentRequest) {
+	@PostMapping("delete_student_list")
+	public StudentResponse deleteStudentList(@RequestBody StudentRequest studentRequest) {
 
-		return studentService.delletStudentList(studentRequest);
+		return studentService.deleteStudentList(studentRequest);
 	}
 	
 	

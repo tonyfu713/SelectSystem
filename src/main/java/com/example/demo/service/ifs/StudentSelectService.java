@@ -14,10 +14,13 @@ public interface StudentSelectService {
 	public StudentSelectResponse addStudentSelectList(StudentSelectRequest studentSelectRequest);
 	
 	//功能_刪除課程
-	public StudentSelectResponse delletStudentSelectList(StudentSelectRequest studentSelectRequest);
+	public StudentSelectResponse deleteStudentSelectList(StudentSelectRequest studentSelectRequest);
 	
-	//功能_學生找已選的課程
-	public List<StudentSelect> findByStudentId (String studentId);
+//	//功能_學生找已選的課程
+//	public List<StudentSelect> findByStudentId (String studentId);
+
+	//功能_找學生已選課程
+	public StudentSelectResponse findByStudentId2(StudentSelectRequest studentSelectRequest);
 
 
 

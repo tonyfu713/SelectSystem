@@ -13,6 +13,6 @@ public interface StudentService {
 	public StudentResponse addStudentList(StudentRequest studentRequest);
 
 	//功能_刪除學生
-	public StudentResponse delletStudentList(StudentRequest studentRequest);
+	public StudentResponse deleteStudentList(StudentRequest studentRequest);
 
 }

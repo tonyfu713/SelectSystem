@@ -18,6 +18,10 @@ public interface SubjectSystemDao extends JpaRepository<SubjectSystem,String>{
 
 	List<SubjectSystem> findByClassCode(String classCode);
 
+//	boolean existByClassCode(String classCode);
+
+	boolean existsByClassName(String className);
+
 
 
 }

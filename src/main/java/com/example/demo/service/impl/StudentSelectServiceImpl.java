@@ -18,6 +18,7 @@ import com.example.demo.service.ifs.StudentSelectService;
 import com.example.demo.vo.StudentResponse;
 import com.example.demo.vo.StudentSelectRequest;
 import com.example.demo.vo.StudentSelectResponse;
+import com.example.demo.vo.SubjectSystemResponse;
 
 @Service
 public class StudentSelectServiceImpl implements StudentSelectService {
@@ -83,21 +84,7 @@ public class StudentSelectServiceImpl implements StudentSelectService {
 						subjectSystemitem.getEndTime(),subjectSystemitem.getCredit());
 						//再把剛剛的newStudentSelectList加進一開始的stutentSelectListTotal
 						stutentSelectListTotal.add(newStudentSelectList);
-	
-//				//等於上面的功能_有設建構方法的話
-//				item2.setStudentId(item.getStudentId());
-//				item2.setStudentName(item.getStudentName());
-//				item2.setClassCode(subjectSystemitem.getClassCode());
-//				item2.setClassName(subjectSystemitem.getClassName());
-//				item2.setDay(subjectSystemitem.getDay());
-//				item2.setStartTime(subjectSystemitem.getStartTime());
-//				item2.setEndTime(subjectSystemitem.getEndTime());
-//				item2.setCredit(subjectSystemitem.getCredit());
-				
-						
-				
-				
-				
+
 				//防呆_選課不得超過10學分
 				//總學分先設成0
 				Integer totalCredit = 0;
@@ -153,10 +140,10 @@ public class StudentSelectServiceImpl implements StudentSelectService {
 	
 	//功能_退選課程
 	@Override
-	public StudentSelectResponse delletStudentSelectList(StudentSelectRequest studentSelectRequest) {
+	public StudentSelectResponse deleteStudentSelectList(StudentSelectRequest studentSelectRequest) {
 		List<StudentSelect> stutentSelectList = studentSelectRequest.getStutentSelectList();
 		for(StudentSelect item : stutentSelectList) {
-			List<SubjectSystem> stutentSelectList2 = subjectSystemDao.findByClassCode(item.getClassCode());
+//			List<SubjectSystem> stutentSelectList2 = subjectSystemDao.findByClassCode(item.getClassCode());
 
 
 			//防呆_輸入數值有缺
@@ -182,11 +169,36 @@ public class StudentSelectServiceImpl implements StudentSelectService {
 	
 
 
-	//功能_用學生id找學生已選課程
+//	//功能_用學生id找學生已選課程
+//	@Override
+//	public List<StudentSelect> findByStudentId(String studentId) {
+//		
+//		return studentSelectDao.findByStudentId(studentId);
+//	}
+
+	//功能_用學生id找學生已選課程2
 	@Override
-	public List<StudentSelect> findByStudentId(String studentId) {
+	public StudentSelectResponse findByStudentId2(StudentSelectRequest studentSelectRequest) {
+		List<StudentSelect> stutentSelectList = studentSelectRequest.getStutentSelectList();
+		List<StudentSelect> stutentSelectListTotal = new ArrayList<>();
 		
-		return studentSelectDao.findByStudentId(studentId);
+		if(CollectionUtils.isEmpty(stutentSelectList)) {
+			return new StudentSelectResponse("資料輸入不完全");
+		}
+		for(StudentSelect item : stutentSelectList) {
+			List<StudentSelect> stutentSelectFindByStudentId = studentSelectDao.findByStudentId(item.getStudentId());
+
+			if(!StringUtils.hasText(item.getStudentId())) {
+				return new StudentSelectResponse("未輸入學號");
+			}
+			if(!studentSelectDao.existsByStudentId(item.getStudentId())) {
+				return new StudentSelectResponse("無此學生資料");
+			}
+			
+			stutentSelectListTotal.addAll(stutentSelectFindByStudentId);
+		}
+		
+		return new StudentSelectResponse(stutentSelectListTotal,"查詢成功");
 	}
 
 

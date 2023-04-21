@@ -13,10 +13,18 @@ public interface SubjectSystemService {
 	public SubjectSystemResponse addclasslist(SubjectSystemRequest subjectSystemRequest);
 	
 	//功能_刪除課程
-	public SubjectSystemResponse delletclasslist(SubjectSystemRequest subjectSystemRequest);
+	public SubjectSystemResponse deleteclasslist(SubjectSystemRequest subjectSystemRequest);
 	
 	//功能_修改課程
 	public SubjectSystemResponse resetclasslist(SubjectSystemRequest subjectSystemRequest);
+	
+	//功能_用課程代碼找課程資訊2
+	public SubjectSystemResponse findByClassCode2(SubjectSystemRequest subjectSystemRequest);
+
+	//功能_用課程名字找課程資訊2
+	public SubjectSystemResponse findByClassName2(SubjectSystemRequest subjectSystemRequest);
+
+	
 
 	//功能_用課程代碼找課程資訊
 	public List<SubjectSystem> findByClassCode (String classCode);
